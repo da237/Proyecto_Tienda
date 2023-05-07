@@ -31,6 +31,14 @@ Route::group(['middleware'=>['auth']],function(){
         Route::delete('/delete/{id}',[App\Http\Controllers\UsuarioController::class,'delete'])->middleware(['permission:borar-usuario'])->name('usuarios.delete');
     });
 
+    Route::group(['prefix'=>'productos'],function(){
+        Route::get('/',[App\Http\Controllers\UsuarioController::class,'index'])->middleware(['permission:ver-productos'])->name('productos.index');
+        Route::get('/all',[App\Http\Controllers\UsuarioController::class,'all'])->middleware(['permission:ver-productos'])->name('productos.all');
+        Route::get('/create',[App\Http\Controllers\UsuarioController::class,'create'])->middleware(['permission:crear-productos'])->name('productos.create');
+        Route::put('/update/{id}',[App\Http\Controllers\UsuarioController::class,'update'])->middleware(['permission:editar-productos'])->name('productos.update');
+        Route::delete('/delete/{id}',[App\Http\Controllers\UsuarioController::class,'delete'])->middleware(['permission:borar-productos'])->name('productos.delete');
+    });
+
 
     // Route::resource('usuarios',UsuarioController::class);
 

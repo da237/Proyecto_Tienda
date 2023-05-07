@@ -16,17 +16,16 @@ class RolesPermisosSeeder extends Seeder
     public function run(): void
     {
 
-
         $permisos = [
-            'ver-usuario',
-            'crear-usuario',
-            'editar-usuario',
-            'borar-usuario',
+            'can-view-users',
+            'can-create-users',
+            'can-edit-users',
+            'can-delete-users',
 
             'ver-articulos',
-            // 'crear-articulos',
-            // 'editar-articulos',
-            // 'borar-articulos',
+            'crear-articulos',
+            'editar-articulos',
+            'borar-articulos',
         ];
 
         $rolCiente=Role::create(['name' => 'cliente']);
@@ -34,7 +33,7 @@ class RolesPermisosSeeder extends Seeder
 
         foreach ($permisos as $permiso) {
            $created=Permission::create(['name'=>$permiso]);
-           if($permiso=='ver-articulos'){
+           if($permiso=='can-view-users'){
             $rolCiente->givePermissionTo($permiso);
            }
         }

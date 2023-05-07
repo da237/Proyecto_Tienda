@@ -20,6 +20,7 @@
               <td scope="col">{{ user.email }}</td>
               <td scope="col">{{ (user.status)?"Activo":"Inactivo" }}</td>
               <button  type="button" class="btn btn-danger" @click="changeStatus(user.id, user.status)">Inhabilitar</button>
+              <button  type="button" class="btn btn-">Editar</button>
             </tr>
           </tbody>
         </table>
