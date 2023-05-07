@@ -23,10 +23,10 @@ class RolesPermisosSeeder extends Seeder
             'delete-users',
             'change-status-users',
 
-            'ver-articulos',
-            'crear-articulos',
-            'editar-articulos',
-            'borar-articulos',
+            'ver-products',
+            'crear-products',
+            'editar-products',
+            'borar-products',
         ];
 
         $rolCiente=Role::create(['name' => 'cliente']);

@@ -22,7 +22,9 @@ app.component('example-component', ExampleComponent);
 import Edit from './components/Edit.vue';
 app.component('edit', Edit);
 import Paginator from './components/Paginator.vue';
-app.component('paginator',Paginator)
+app.component('paginator',Paginator);
+import Productos from './components/productos.vue';
+app.component('productos',Productos)
 
 /**
  * The following block of code may be used to automatically register your

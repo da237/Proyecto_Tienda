@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesPermisosSeeder::class);
 
 
-        Products::factory(2)->create();
+        Products::factory(20)->create();
 
         $admin=Role::create(['name' => 'admin']);
         $userAdmin=\App\Models\User::factory()->create([

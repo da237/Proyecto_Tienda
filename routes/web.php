@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ProductsController;
 
 
 Route::get('/', function () {
@@ -32,11 +33,21 @@ Route::group(['middleware'=>['auth']],function(){
     });
 
     Route::group(['prefix'=>'productos'],function(){
-        Route::get('/',[App\Http\Controllers\UsuarioController::class,'index'])->middleware(['permission:ver-productos'])->name('productos.index');
-        Route::get('/all',[App\Http\Controllers\UsuarioController::class,'all'])->middleware(['permission:ver-productos'])->name('productos.all');
-        Route::get('/create',[App\Http\Controllers\UsuarioController::class,'create'])->middleware(['permission:crear-productos'])->name('productos.create');
-        Route::put('/update/{id}',[App\Http\Controllers\UsuarioController::class,'update'])->middleware(['permission:editar-productos'])->name('productos.update');
-        Route::delete('/delete/{id}',[App\Http\Controllers\UsuarioController::class,'delete'])->middleware(['permission:borar-productos'])->name('productos.delete');
+        Route::get('/',[ProductsController::class,'index'])
+            ->middleware(['permission:ver-products'])
+            ->name('productos.index');
+        Route::get('/all',[ProductsController::class,'all'])
+            ->middleware(['permission:ver-products'])
+            ->name('productos.all');
+        Route::get('/create',[ProductsController::class,'create'])
+            ->middleware(['permission:crear-products'])
+            ->name('productos.create');
+        Route::put('/update/{id}',[ProductsController::class,'update'])
+            ->middleware(['permission:editar-products'])
+            ->name('productos.update');
+        Route::delete('/delete/{id}',[ProductsController::class,'delete'])
+            ->middleware(['permission:borar-products'])
+            ->name('productos.delete');
     });
 
 
