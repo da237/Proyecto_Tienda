@@ -17,6 +17,10 @@ const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
+import Edit from './components/Edit.vue';
+app.component('edit', Edit);
+import Paginator from './components/Paginator.vue';
+app.component('paginator',Paginator)
 
 /**
  * The following block of code may be used to automatically register your

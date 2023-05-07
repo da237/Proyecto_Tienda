@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Migrations\RollbackCommand;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -14,6 +15,8 @@ class RolesPermisosSeeder extends Seeder
      */
     public function run(): void
     {
+
+
         $permisos = [
             'ver-usuario',
             'crear-usuario',
@@ -21,13 +24,19 @@ class RolesPermisosSeeder extends Seeder
             'borar-usuario',
 
             'ver-articulos',
-            'crear-articulos',
-            'editar-articulos',
-            'borar-articulos',
+            // 'crear-articulos',
+            // 'editar-articulos',
+            // 'borar-articulos',
         ];
 
+        $rolCiente=Role::create(['name' => 'cliente']);
+
+
         foreach ($permisos as $permiso) {
-          Permission::create(['name'=>$permiso]);
+           $created=Permission::create(['name'=>$permiso]);
+           if($permiso=='ver-articulos'){
+            $rolCiente->givePermissionTo($permiso);
+           }
         }
     }
 }

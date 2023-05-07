@@ -18,21 +18,23 @@ class Usuariocontroller extends Controller
     public function index()
     {
         // return response()->json( User::all(5));
-        return view('Usuarios.index');
+        return view('usuario.index');
     }
 
-    // public function all(){
-    //     dd('holamundo');
-    //     return response()->json( User::paginate(5));
-    // }
+    public function all(){
+        // dd('holamundo');
+        return response()->json( User::paginate(5));
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        Role::pluck('name','name')->all();
-        return view('Usuarios.crear',compact('roles'));
+        // user::pluck('name','name')->all();
+        // return view('usuarios.create',compact('user'));
+        return view('usuarios.create');
+
     }
 
     /**
@@ -102,6 +104,12 @@ class Usuariocontroller extends Controller
 
         $user->assingRole($request->input('roles'));
         return redirect()->route('usuarios.index');
+    }
+
+    public function updateStatus (int $id,Request $request){
+        user::where('id',$id)->update([
+            'status'=> $request->get('status')
+        ]);
     }
 
     /**
