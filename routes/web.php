@@ -23,12 +23,12 @@ Route::group(['middleware'=>['auth']],function(){
     });
 
     Route::group(['prefix'=>'usuarios'],function(){
-        Route::get('/',[App\Http\Controllers\UsuarioController::class,'index'])->middleware(['permission:ver-usuario'])->name('usuarios.index');
-        Route::get('/all',[App\Http\Controllers\UsuarioController::class,'all'])->middleware(['permission:ver-usuario'])->name('usuarios.all');
-        Route::get('/create',[App\Http\Controllers\UsuarioController::class,'create'])->middleware(['permission:crear-usuario'])->name('usuarios.create');
-        Route::put('/update/{id}',[App\Http\Controllers\UsuarioController::class,'update'])->middleware(['permission:editar-usuario'])->name('usuarios.update');
-        Route::put('/update_status/{id}',[App\Http\Controllers\UsuarioController::class,'updateStatus'])->middleware(['permission:editar-usuario'])->name('usuarios.update.status');
-        Route::delete('/delete/{id}',[App\Http\Controllers\UsuarioController::class,'delete'])->middleware(['permission:borar-usuario'])->name('usuarios.delete');
+        Route::get('/',[App\Http\Controllers\UsuarioController::class,'index'])->middleware(['permission:view-users'])->name('usuarios.index');
+        Route::get('/all',[App\Http\Controllers\UsuarioController::class,'all'])->middleware(['permission:view-users'])->name('usuarios.all');
+        Route::get('/create',[App\Http\Controllers\UsuarioController::class,'create'])->middleware(['permission:create-users'])->name('usuarios.create');
+        Route::put('/update/{id}',[App\Http\Controllers\UsuarioController::class,'update'])->middleware(['permission:edit-users'])->name('usuarios.update');
+        Route::put('/update_status/{id}',[App\Http\Controllers\UsuarioController::class,'updateStatus'])->middleware(['permission:edit-users'])->name('usuarios.update.status');
+        Route::delete('/delete/{id}',[App\Http\Controllers\UsuarioController::class,'delete'])->middleware(['permission:delete-users'])->name('usuarios.delete');
     });
 
     Route::group(['prefix'=>'productos'],function(){

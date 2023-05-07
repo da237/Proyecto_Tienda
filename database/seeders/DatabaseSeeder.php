@@ -30,5 +30,12 @@ class DatabaseSeeder extends Seeder
             'password'=> bcrypt('admin123456')
         ]);
         $userAdmin->assignRole($admin);
+
+        $userClient=\App\Models\User::factory()->create([
+            'name' => 'client',
+            'email' => 'client@example.com',
+            'password'=> bcrypt('123456')
+        ]);
+        $userClient->assignRole('cliente');
     }
 }

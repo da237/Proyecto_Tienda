@@ -17,10 +17,11 @@ class RolesPermisosSeeder extends Seeder
     {
 
         $permisos = [
-            'can-view-users',
-            'can-create-users',
-            'can-edit-users',
-            'can-delete-users',
+            'view-users',
+            'create-users',
+            'edit-users',
+            'delete-users',
+            'change-status-users',
 
             'ver-articulos',
             'crear-articulos',
@@ -33,7 +34,7 @@ class RolesPermisosSeeder extends Seeder
 
         foreach ($permisos as $permiso) {
            $created=Permission::create(['name'=>$permiso]);
-           if($permiso=='can-view-users'){
+           if($permiso=='view-users'){
             $rolCiente->givePermissionTo($permiso);
            }
         }

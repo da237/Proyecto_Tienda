@@ -10,7 +10,7 @@
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Estado</th>
-              <th scope="col">Actions</th>
+              <th scope="col" v-if="can('edit-users | change-status-users') || is('admin')">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -19,8 +19,8 @@
               <td scope="col">{{ user.name }}</td>
               <td scope="col">{{ user.email }}</td>
               <td scope="col">{{ (user.status)?"Activo":"Inactivo" }}</td>
-              <button  type="button" class="btn btn-danger" @click="changeStatus(user.id, user.status)">Inhabilitar</button>
-              <button  type="button" class="btn btn-">Editar</button>
+              <button  type="button" class="btn btn-danger" @click="changeStatus(user.id, user.status)" v-if="can('change-status-users') || is('admin')">Inhabilitar</button>
+              <button  type="button" class="btn btn-secondary" v-if="can('edit-users') || is('admin')">Editar</button>
             </tr>
           </tbody>
         </table>
