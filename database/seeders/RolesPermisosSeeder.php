@@ -38,5 +38,12 @@ class RolesPermisosSeeder extends Seeder
             $rolCiente->givePermissionTo($permiso);
            }
         }
+
+        foreach ($permisos as $permiso) {
+            $created=Permission::create(['name'=>$permiso]);
+            if($permiso=='ver-products'){
+             $rolCiente->givePermissionTo($permiso);
+            }
+         }
     }
 }
