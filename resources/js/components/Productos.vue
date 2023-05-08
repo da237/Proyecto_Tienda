@@ -35,7 +35,7 @@
                 @click="changeStatus(product.id, product.status)"
                 v-if="can('change-status-products') || is('admin')"
               >
-                Inhabilitar
+                Eliminar
               </button>
               <button
                 type="button"
@@ -43,6 +43,13 @@
                 v-if="can('edit-products') || is('admin')"
               >
                 Editar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                v-if="can('edit-products') || is('admin')"
+              >
+                crear
               </button>
             </tr>
           </tbody>
