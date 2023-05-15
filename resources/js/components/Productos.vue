@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <input type="text" placeholder="Buscar usuario" />
         <table class="table table-bordered" with="100%">
           <thead>
             <tr>
@@ -14,7 +13,9 @@
               <th scope="col">Cantidad</th>
               <th
                 scope="col"
-                v-if="can('edit-products | change-status-products') || is('admin')"
+                v-if="
+                  can('edit-products | change-status-products') || is('admin')
+                "
               >
                 Actions
               </th>
@@ -23,10 +24,20 @@
           <tbody>
             <tr v-for="(product, index) in products.data" :key="index">
               <td scope="col">{{ product.id }}</td>
-              <td scope="col"><img  :src= "'storage/'+product.image"  :alt="index" width="150px" height="150px"></td>
+              <td scope="col">
+                <img
+                  :src="
+                    'http://localhost:82/Proyecto/storage/app/public/images/' +
+                    product.image
+                  "
+                  :alt="index"
+                  width="50px"
+                  height="50px"
+                />
+              </td>
               <td scope="col">{{ product.title }}</td>
               <td scope="col">{{ product.description }}</td>
-              <td scope="col">{{ '$'+product.price }}</td>
+              <td scope="col">{{ "$" + product.price }}</td>
               <td scope="col">{{ product.stock }}</td>
               <td scope="col">{{ product.status ? "Activo" : "Inactivo" }}</td>
               <button
@@ -44,6 +55,7 @@
               >
                 Editar
               </button>
+              <a class="nav-link" href="{{ route('products.create') }}">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -51,6 +63,15 @@
               >
                 crear
               </button>
+            </a>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                v-if="can('edit-products') || is('admin')"
+              >
+                Eliminar
+              </button>
+
             </tr>
           </tbody>
         </table>
@@ -80,6 +101,7 @@ export default {
     async fetchProducts(page = 1) {
       const response = await axios.get(`productos/all?page=${page}`);
       this.products = response.data;
+      console.log(response.data);
       this.current_page = response.data.current_page;
       this.last_page = response.data.last_page;
     },

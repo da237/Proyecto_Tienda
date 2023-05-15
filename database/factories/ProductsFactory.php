@@ -19,7 +19,7 @@ class ProductsFactory extends Factory
         return [
             'title' => $this->faker->unique()->realText(55),
             'description' => $this->faker->paragraph(1),
-            'image' =>'products/'.$this->faker->image('public/storage/products',50,50,null,false),
+            'image' =>$this->faker->image(storage_path('app/public/images'),250,300,false,false),
             'price' => fake()->randomFloat(2, 10, 1000),
             'stock' => fake()->numberBetween(1, 100),
             'status'=>$this->faker->boolean(),

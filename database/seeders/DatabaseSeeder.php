@@ -16,20 +16,20 @@ class DatabaseSeeder extends Seeder
 
         Storage::deleteDirectory('public/images');
         Storage::makeDirectory('public/images');
-        \App\Models\User::factory(500)->create();
+        \App\Models\User::factory(10)->create();
 
         $this->call(RolesPermisosSeeder::class);
 
 
         Products::factory(20)->create();
 
-        $admin=Role::create(['name' => 'admin']);
+
         $userAdmin=\App\Models\User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
             'password'=> bcrypt('admin123456')
         ]);
-        $userAdmin->assignRole($admin);
+        $userAdmin->assignRole('admin');
 
         $userClient=\App\Models\User::factory()->create([
             'name' => 'client',

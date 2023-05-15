@@ -11,7 +11,6 @@ class ProductsController extends Controller
     public function index()
     {
         return view('products.index');
-        //
     }
 
     public function all(){
@@ -25,7 +24,7 @@ class ProductsController extends Controller
     {
         $statuses = Products::distinct()->pluck('status');
         // dd($status);
-        return view('', compact(''));
+        return view('products.create', compact(''));
         //
     }
 
@@ -68,6 +67,12 @@ class ProductsController extends Controller
         //
     }
 
+    public function updateStatus (int $id,Request $request){
+        Products::where('id',$id)->update([
+            'status'=> $request->get('status')
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -100,7 +105,6 @@ class ProductsController extends Controller
     public function destroy(Products $product)
     {
         $product->delete();
-
         return redirect()->back()->withSuccess('productos.delete');
         //
     }
