@@ -8,12 +8,12 @@ use App\Http\Controllers\ProductsController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('products.index');
 });
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::group(['prefix'=>'roles'],function(){
@@ -62,6 +62,12 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/create',[ProductsController::class,'create'])
             ->middleware(['permission:crear-products'])
             ->name('productos.create');
+        Route::post('/store',[ProductsController::class,'store'])
+            ->middleware(['permission:crear-products'])
+            ->name('productos.store');
+        Route::post('/edit/{id}',[ProductsController::class,'edit'])
+            ->middleware(['permission:editar-products'])
+            ->name('productos.edit');
         Route::put('/update/{id}',[ProductsController::class,'update'])
             ->middleware(['permission:editar-products'])
             ->name('productos.update');

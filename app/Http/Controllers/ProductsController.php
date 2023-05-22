@@ -22,31 +22,30 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $statuses = Products::distinct()->pluck('status');
-        // dd($status);
-        return view('products.create', compact(''));
-        //
+        return view('products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store( $request)
+    public function store( Request $request)
     {
-        $path = $request['image']->store('public/images');
-        $newpath = str_replace("public/images", "", $path);
+        $imageName = " ";
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('storage/images'), $imageName);
+        };
         Products::create([
-            'title' => $request['title'],
-            'image' => $newpath,
-            'category_id' => $request['category_id'],
-            'description' => $request['description'],
-            'status' => $request['status'],
-            'price' => $request['price'],
-            'stock' => $request['stock']
+            'title' => $request->get('title'),
+            'image' => $imageName,
+            // 'category_id' => $request['category_id'],
+            'description' => $request->get('description'),
+            'status' => $request->get('status'),
+            'price' => $request->get('price'),
+            'stock' => $request->get('stock')
         ]);
-        return redirect()->back()->withSuccess('Producto creado ');
-
-        //
+        return redirect()->route('productos.index')->withSuccess('Producto creado ');
     }
 
     /**
@@ -63,8 +62,8 @@ class ProductsController extends Controller
     public function edit(Products $product)
     {
         $statuses = Products::distinct()->pluck('status');
-        return view('admin.products.edit', compact('product', 'categories', 'statuses'));
-        //
+        return view();
+
     }
 
     public function updateStatus (int $id,Request $request){
@@ -80,7 +79,7 @@ class ProductsController extends Controller
     {
         if ($request->hasFile('image') && ($request['image'] != $product->image)) {
             // dd($product->image);
-            Storage::delete('public/images' . $product->image);
+            // Storage::delete('public/images' . $product->image);
             $path = $request['image']->store('public/products');
             $newpath = str_replace("public/storage/products", "", $path);
             $product->update([
@@ -95,13 +94,8 @@ class ProductsController extends Controller
         }
         $product->update($request->validated());
         return redirect()->route('productos.index')->withSuccess('Producto actualizado ');
-        // dd($request);
-        //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Products $product)
     {
         $product->delete();

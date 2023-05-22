@@ -2,6 +2,15 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
+        <a class="nav-link" href="/productos/create">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            v-if="can('edit-products') || is('admin')"
+          >
+            crear
+          </button>
+        </a>
         <table class="table table-bordered" with="100%">
           <thead>
             <tr>
@@ -26,10 +35,7 @@
               <td scope="col">{{ product.id }}</td>
               <td scope="col">
                 <img
-                  :src="
-                    'http://localhost:82/Proyecto/storage/app/public/images/' +
-                    product.image
-                  "
+                  v-bind:src="'/storage/images/' + product.image"
                   :alt="index"
                   width="50px"
                   height="50px"
@@ -53,25 +59,17 @@
                 class="btn btn-secondary"
                 v-if="can('edit-products') || is('admin')"
               >
-                Editar
-              </button>
-              <a class="nav-link" href="{{ route('products.create') }}">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                v-if="can('edit-products') || is('admin')"
-              >
-                crear
-              </button>
-            </a>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                v-if="can('edit-products') || is('admin')"
-              >
                 Eliminar
               </button>
-
+              <a class="nav-link" href="/productos/edit">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  v-if="can('edit-products') || is('admin')"
+                >
+                  Editar
+                </button>
+              </a>
             </tr>
           </tbody>
         </table>

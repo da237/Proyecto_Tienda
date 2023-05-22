@@ -7,9 +7,7 @@
                 <div class="card">
                     <div class="card-header">Productos</div>
                     <div class="card-body">
-                        @verbatim
-                            <productos />
-                        @endverbatim
+                        <productos/>
                     </div>
                 </div>
             </div>

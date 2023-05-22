@@ -30,9 +30,6 @@
                     @endauth
                 </div>
             @endif
-
-            links here
-            <a href="{{route('login')}}">logueate</a>
         </div>
     </body>
 </html>

@@ -6,7 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs';
+
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -17,14 +18,17 @@ import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
 const app = createApp({});
 app.use(LaravelPermissionToVueJS)
 
+
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
-import Edit from './components/Edit.vue';
-app.component('edit', Edit);
 import Paginator from './components/Paginator.vue';
 app.component('paginator',Paginator);
-import Productos from './components/productos.vue';
-app.component('productos',Productos)
+import Productos from './components/products/Productos.vue';
+app.component('productos',Productos);
+import CreateProduct from './components/products/CreateProduct.vue';
+app.component('product-create',CreateProduct)
+import Hola from './components/products/Hola.vue';
+app.component('hola',Hola)
 
 /**
  * The following block of code may be used to automatically register your
