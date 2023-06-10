@@ -37,4 +37,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function redirectTo()
+{
+    if (auth()->user()->hasRole('admin')) {
+        return '/admin/usuarios'; // Ruta de redirección para el rol de administrador
+    } elseif (auth()->user()->hasRole('cliente')) {
+        return '/'; // Ruta de redirección para el rol de cliente
+    } else {
+        return '/'; // Ruta de redirección por defecto
+    }
+}
 }

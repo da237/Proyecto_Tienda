@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -20,8 +21,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RolesPermisosSeeder::class);
 
-
+        Category::factory(3)->create();
         Products::factory(20)->create();
+
 
 
         $userAdmin=\App\Models\User::factory()->create([

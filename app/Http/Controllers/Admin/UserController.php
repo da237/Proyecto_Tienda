@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 
-class Usuariocontroller extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class Usuariocontroller extends Controller
     public function index()
     {
         // return response()->json( User::all(5));
-        return view('usuario.index');
+        return view('admin.usuario.index');
     }
 
     public function all(){
@@ -33,7 +33,7 @@ class Usuariocontroller extends Controller
     {
         // user::pluck('name','name')->all();
         // return view('usuarios.create',compact('user'));
-        return view('usuarios.create');
+        return view('admin.usuarios.create');
 
     }
 
@@ -55,7 +55,7 @@ class Usuariocontroller extends Controller
         $user = User::create('$input');
         $user->assingRole($request->input('roles'));
 
-        return redirect()->route('usuario.index');
+        return redirect()->route('admin.usuario.index');
     }
 
     /**
@@ -75,7 +75,7 @@ class Usuariocontroller extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole  = $user->roles->pluck('name','name')->all();
 
-        return view('Usuarios.editar',compact('user','roles','userRole'));
+        return view('admin.Usuarios.editar',compact('user','roles','userRole'));
     }
 
     /**
@@ -103,7 +103,7 @@ class Usuariocontroller extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assingRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('admin.usuarios.index');
     }
 
     public function updateStatus (int $id,Request $request){
@@ -118,6 +118,6 @@ class Usuariocontroller extends Controller
     public function destroy(string $id)
     {
         User::find($id)->delete();
-        return redirect()->route('usuarios.destroy');
+        return redirect()->route('admin.usuarios.destroy');
     }
 }

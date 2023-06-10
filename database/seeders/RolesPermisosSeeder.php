@@ -54,7 +54,7 @@ class RolesPermisosSeeder extends Seeder
     Permission::create(['name' => 'edit-users'])->assignRole($role1);
     Permission::create(['name' => 'delete-users'])->assignRole($role1);
     Permission::create(['name' => 'change-status-users'])->assignRole($role1);
-    Permission::create(['name' => 'ver-products'])->assignRole($role1, $role2);
+    Permission::create(['name' => 'ver-products'])->assignRole($role1);
     Permission::create(['name' => 'crear-products'])->assignRole($role1);
     Permission::create(['name' => 'editar-products'])->assignRole($role1);
     Permission::create(['name' => 'borar-products'])->assignRole($role1);

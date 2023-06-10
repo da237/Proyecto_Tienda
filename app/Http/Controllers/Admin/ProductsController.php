@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
 
@@ -10,7 +11,7 @@ class ProductsController extends Controller
 
     public function index()
     {
-        return view('products.index');
+        return view('admin.products.index');
     }
 
     public function all(){
@@ -22,7 +23,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -45,7 +46,7 @@ class ProductsController extends Controller
             'price' => $request->get('price'),
             'stock' => $request->get('stock')
         ]);
-        return redirect()->route('productos.index')->withSuccess('Producto creado ');
+        return redirect()->route('admin.productos.index')->withSuccess('Producto creado ');
     }
 
     /**
@@ -90,10 +91,10 @@ class ProductsController extends Controller
                 'stock' => $request['stock'],
                 'valor' => $request['price']
             ]);
-            return redirect()->route('productos.index')->withSuccess('Producto actualizado. ');
+            return redirect()->route('admin.productos.index')->withSuccess('Producto actualizado. ');
         }
         $product->update($request->validated());
-        return redirect()->route('productos.index')->withSuccess('Producto actualizado ');
+        return redirect()->route('admin.productos.index')->withSuccess('Producto actualizado ');
     }
 
     public function destroy(Products $product)

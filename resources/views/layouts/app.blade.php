@@ -87,6 +87,5 @@
             @yield('content')
         </main>
     </div>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>

@@ -19,16 +19,8 @@ const app = createApp({});
 app.use(LaravelPermissionToVueJS)
 
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
-import Paginator from './components/Paginator.vue';
-app.component('paginator',Paginator);
-import Productos from './components/products/Productos.vue';
-app.component('productos',Productos);
-import CreateProduct from './components/products/CreateProduct.vue';
-app.component('product-create',CreateProduct)
-// import Hola from './components/products/Hola.vue';
-// app.component('hola',Hola)
+import Catalog from './components/web/Catalog.vue';
+app.component('catalog', Catalog);
 
 /**
  * The following block of code may be used to automatically register your
@@ -48,4 +40,4 @@ app.component('product-create',CreateProduct)
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.mount('#app');
+app.mount('#web');

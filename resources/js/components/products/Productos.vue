@@ -17,9 +17,10 @@
               <th scope="col">id</th>
               <th scope="col">Imagen</th>
               <th scope="col">Name</th>
-              <th scope="col">descripcion</th>
+              <th scope="col">Descripciòn</th>
               <th scope="col">Precio</th>
               <th scope="col">Cantidad</th>
+              <th scope="col">Categoria</th>
               <th
                 scope="col"
                 v-if="
@@ -45,6 +46,7 @@
               <td scope="col">{{ product.description }}</td>
               <td scope="col">{{ "$" + product.price }}</td>
               <td scope="col">{{ product.stock }}</td>
+              <td scope="col">{{ product.categories }}</td>
               <td scope="col">{{ product.status ? "Activo" : "Inactivo" }}</td>
               <button
                 type="button"
@@ -61,7 +63,7 @@
               >
                 Eliminar
               </button>
-              <a class="nav-link" href="/productos/edit">
+              <a class="nav-link" :href="'/productos/edit/'+product.id">
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -105,12 +107,12 @@ export default {
     },
     async changeStatus(id, status) {
       const response = await axios.put("productos/update_status/" + id, {
-        status: !status ? 1 : 0,
+        status:(!status)?1:0
       });
-      this.fetchProducts();
+      this.fetchProducts()
     },
     changePage(page) {
-      this.fetchProducts(page);
+      this.fetchProducts(page)
     },
   },
 };
