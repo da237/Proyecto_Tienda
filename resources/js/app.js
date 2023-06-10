@@ -26,7 +26,8 @@ app.component('paginator',Paginator);
 import Productos from './components/products/Productos.vue';
 app.component('productos',Productos);
 import CreateProduct from './components/products/CreateProduct.vue';
-app.component('product-create',CreateProduct)
+app.component('product-create',CreateProduct);
+
 // import Hola from './components/products/Hola.vue';
 // app.component('hola',Hola)
 

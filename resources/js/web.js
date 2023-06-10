@@ -21,6 +21,8 @@ app.use(LaravelPermissionToVueJS)
 
 import Catalog from './components/web/Catalog.vue';
 app.component('catalog', Catalog);
+import CartComponent from './components/web/CartComponent.vue';
+app.component('cart-component',CartComponent)
 
 /**
  * The following block of code may be used to automatically register your

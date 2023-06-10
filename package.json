@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.23.1",
-        "laravel-permission-to-vuejs": "^3.0.1"
+        "laravel-permission-to-vuejs": "^3.0.1",
+        "tiny-emitter": "^2.1.0"
     }
 }
